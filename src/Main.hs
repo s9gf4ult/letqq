@@ -1,20 +1,14 @@
 module Main where
 
+import Data.HashSet        (singleton)
 import Language.Haskell.TH
 import TH
-
 
 x = 321
 
 main :: IO ()
 main = do
-    print $(let  x = [e|123|]
-                 y = [e|$x|]
-            in y)
-
-    print $(let  x = [e|123|]
-                 y = [somE|$x|]
-            in y)
-
-    print $(let  x = [e|123|]
-            in varE (mkName "x"))
+    let i = $(hinsert)
+    let ii = $(hinserte)
+    print $ i  2 (singleton (1 :: Int))
+    print $ ii 2 (singleton (1 :: Int))
